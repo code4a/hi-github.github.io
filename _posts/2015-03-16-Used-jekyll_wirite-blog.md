@@ -20,5 +20,28 @@ categories: [Jekyll]
 
 ---
 
+##给博客添加评论模块
+<br/>
+#### 注册[多说](duoshuo.com/create-site/)
+
+ ![create_duo_shuo_site]({{ site.url }}/images/posts/duoshuo_create_site.png)
+<br/>
+#### 获取通用代码添加到default模板的body的任意位置
+
+ ![get_duoshuo_code]({{ site.url }}/images/posts/add_code_in_layout.png)
+<br/>
+#### 更换上述代码的中文
+
+* `data-thread-key` 填上 `{ { page.id } } `
+* `data-title` 填上 `{ { page.title } }`
+* `data-url` 填上 `your web site{ { page.url } }`
+* `short_name` 注册多说账号的时候让你填的二级短域名
+ ![erjiyuming]({{ sit.url }}/images/posts/erjiyuming.png)
+* 去掉双大括号中间的空格即可
+* 实例
+ ![erjiyuming]({{ sit.url }}/images/posts/duoshuo_in_layout_eg.png)
+
+---
+
 ## 代码提交
 >按照上面所说的步骤是需要新建 gh-pages分支的，需要将blog提交到该分支，但是我按照上面的方式试了三次都没有成功，后来就把这个gh-pages分支删除掉了，移除了原来master分支的所有文件，然后将原来写好的模板重新提交到master分支之后，稍等片刻静态的博客就成功的创建了。
