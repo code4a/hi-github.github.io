@@ -1,0 +1,5 @@
+#- name: Dotfiles
+#  github: ssaunier/dotfiles
+#  technology: zsh
+#  description: >
+#    My dotfiles for my Macbook Pro Retina.
