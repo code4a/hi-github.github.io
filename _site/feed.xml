@@ -1,33 +1,23 @@
 <!DOCTYPE html>
-<html lang="{% if page.language == nil %}en{% else %}{{ page.language }}{% endif %}">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="google-site-verification" content="aexITLS38FdIRzwj25OVWxm87rpa9l-UV0URTyC9cTs" />
   <title>
-    {{ page.title }}
-    {% if page.category == 'blog' and page.url != '/blog/index.html' %}
-    - Jiang Yantao
-    {% endif %}
+    
+    
   </title>
   <link rel="stylesheet" href="../css/site.css">
   <link href="/favicon.ico" rel="shortcut icon" type="image/x-icon" />
-  {% if page.description %}<meta name="description" content="{{page.description}}" />{% endif %}
+  
   <link rel="alternate" type="application/atom+xml" title="RSS Feed for Jiang Yantao's blog" href="/feed.xml" />
 
-  {% if page.url == '/index.html' %}
-    <link rel="alternate" hreflang="en" href="/en/" />
-  {% elsif page.url == '/en/index.html' %}
-    <link rel="alternate" hreflang="ch" href="/" />
-  {% endif %}
+  
 
-  {{ page.extra_head }}
+  
 
-  {% if page.category == 'blog' %}
-    {% if page.photo %}
-      <meta property="og:image" content="/images/posts/{{ page.photo }}" />
-    {% endif %}
-  {% endif %}
+  
 </head>
 <body>
   <div class="top-bar">
@@ -35,42 +25,28 @@
 
   <div class="header-container">
     <header class="inner">
-      {% if page.url == '/en/index.html' %}
+      
       <nav>
-        <a class="{% if page.category == 'about' %} selected {% endif %}" href="/en/">About</a>
-        <a class="{% if page.category == 'project' %} selected {% endif %}" href="/project/">Project</a>
-        <!--<a class="{% if page.category == 'resume' %} selected {% endif %}" href="/resume/">Resume</a>-->
-        <a href="/resume/">Resume</a>
-        <!--<a class="{% if page.category == 'publication' %} selected {% endif %}" href="/publication/">出版</a>-->
-        <a class="{% if page.category == 'blog' %} selected {% endif %}" href="/blog/">Blog</a>
-        <!--<a class="{% if page.category == 'contact' %} selected {% endif %} contact" href="/contact/">Contact</a>-->
-		<a href="#">Employ</a>
-        <a href="https://github.com/hi-github">Github</a>
-      </nav>
-      {% else %}
-      <nav>
-        <a class="{% if page.category == 'about' %} selected {% endif %}" href="/">关于</a>
-        <a class="{% if page.category == 'project' %} selected {% endif %}" href="/project/">项目</a>
-        <!--<a class="{% if page.category == 'resume' %} selected {% endif %}" href="/resume/">Resume</a>-->
+        <a class="" href="/">关于</a>
+        <a class="" href="/project/">项目</a>
+        <!--<a class="" href="/resume/">Resume</a>-->
 		    <a href="/resume/">简历</a>
-        <!--<a class="{% if page.category == 'publication' %} selected {% endif %}" href="/publication/">Publication</a>-->
-        <a class="{% if page.category == 'blog' %} selected {% endif %}" href="/blog/">博客</a>
+        <!--<a class="" href="/publication/">Publication</a>-->
+        <a class="" href="/blog/">博客</a>
 		<a href="/books/">书籍</a>
-        <!--<a class="{% if page.category == 'contact' %} selected {% endif %} contact" href="/contact/">Contact</a>-->
+        <!--<a class=" contact" href="/contact/">Contact</a>-->
         <a href="https://github.com/hi-github">Github</a>
       </nav>
-      {% endif %}
+      
       
       <div class="pull-right right logo">
         <div class="name">
           <a href="/">Jiang Yantao</a><br />
           <small>
             <em>
-              {% if page.url == '/en/index.html' %}
-                <a href="/en">developer</a>
-              {% else %}
+              
                 <a href="/">开发者</a>
-              {% endif %}
+              
             </em>
           </small>
         </div>
@@ -81,7 +57,82 @@
     <div class="clear"></div>
   </div>
 
-  {{ content }}
+  <?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Jiang Yantao - Blog</title>
+    <description>On Software Engineering, Lean Startup, Agile and Productivity</description>
+    <link>http://hi-github.github.io</link>
+    <atom:link href="/feed.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Jekyll基本使用</title>
+      <description>&lt;h2 id=&quot;jekyll&quot;&gt;Jekyll&lt;/h2&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;前一段时间从朋友那里看到他写的博客感觉很有Big，虽就问他怎么弄得，然后就了解到了Jekyll，然后就各种百度(公司的网络用的是代理，常识各种翻墙，各种失败)，最后决定按照 &lt;strong&gt;&lt;a href=&quot;http://segmentfault.com/blog/skyinlayer/1190000000406011&quot;&gt;天镶的博客&lt;/a&gt;&lt;/strong&gt; 里边写的过程去试着配置环境，整个操作下来还是比较简单的，过程中有参照 &lt;strong&gt;&lt;a href=&quot;http://blog.csdn.net/kong5090041/article/details/38408211&quot;&gt;oukongli的专栏&lt;/a&gt;&lt;/strong&gt; ，因为公司这边的网络实在是不敢恭维CSDN博客也只能用快照浏览。参照两位大牛的流程搭建环境就差不多啦。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;hr&gt;
+
+&lt;h2 id=&quot;博客模板&quot;&gt;博客模板&lt;/h2&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;博客的模板我是在Github上边Fork了 &lt;a href=&quot;willard-yuan/willard-yuan.github.io&quot;&gt;袁勇&lt;/a&gt; 的Repository，然后Clone到本地做了简单的修改，模板都是看个人的爱好和需要可以自己查询，修改好之后可以通过 jekyll server 命令启动服务，然后通过localhost:4000预览一下效果，如果觉得可以，就可以提交到github啦。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;hr&gt;
+
+&lt;h2 id=&quot;本地预览&quot;&gt;本地预览&lt;/h2&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;我是使用的MarkdownPad写的笔记，笔记中基本都是中文，然后通过 jekyll server启动成功之后，打开预览是发现中文都乱码啦,后来仔细看下原来是笔记没有按照yaml的格式去写，所以一定要注意开头的格式，如果实在不知道可以参照这篇日记得格式。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;hr&gt;
+
+&lt;h2 id=&quot;给博客添加评论模块&quot;&gt;给博客添加评论模块&lt;/h2&gt;
+
+&lt;p&gt;&lt;br/&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;注册多说&quot;&gt;注册&lt;a href=&quot;duoshuo.com/create-site/&quot;&gt;多说&lt;/a&gt;&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/duoshuo_create_site.png&quot; alt=&quot;create_duo_shuo_site&quot;&gt;
+&lt;br/&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;获取通用代码添加到default模板的body的任意位置&quot;&gt;获取通用代码添加到default模板的body的任意位置&lt;/h4&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/posts/add_code_in_layout.png&quot; alt=&quot;get_duoshuo_code&quot;&gt;
+&lt;br/&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;更换上述代码的中文&quot;&gt;更换上述代码的中文&lt;/h4&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;data-thread-key&lt;/code&gt; 填上 &lt;code&gt;{ { page.id } }&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;data-title&lt;/code&gt; 填上 &lt;code&gt;{ { page.title } }&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;data-url&lt;/code&gt; 填上 &lt;code&gt;your web site{ { page.url } }&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;short_name&lt;/code&gt; 注册多说账号的时候让你填的二级短域名
+&lt;img src=&quot;/images/posts/erjiyuming.png&quot; alt=&quot;erjiyuming&quot;&gt;&lt;/li&gt;
+&lt;li&gt;去掉双大括号中间的空格即可&lt;/li&gt;
+&lt;li&gt;实例
+&lt;img src=&quot;/images/posts/duoshuo_in_layout_eg.png&quot; alt=&quot;erjiyuming&quot;&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr&gt;
+
+&lt;h2 id=&quot;代码提交&quot;&gt;代码提交&lt;/h2&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;按照上面所说的步骤是需要新建 gh-pages分支的，需要将blog提交到该分支，但是我按照上面的方式试了三次都没有成功，后来就把这个gh-pages分支删除掉了，移除了原来master分支的所有文件，然后将原来写好的模板重新提交到master分支之后，稍等片刻静态的博客就成功的创建了。&lt;/p&gt;
+&lt;/blockquote&gt;
+</description>
+      <pubDate>Mon, 16 Mar 2015 00:00:00 +0000</pubDate>
+      <link>/blog/Used-jekyll_wirite-blog.html</link>
+      <guid isPermaLink="true">/blog/Used-jekyll_wirite-blog.html</guid>
+    </item>
+    
+  </channel>
+</rss>
   <div class="separator"></div>
 
   <div  style="border-bottom: 1px solid #ddd"></div>

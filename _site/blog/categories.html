@@ -1,75 +1,56 @@
 <!DOCTYPE html>
-<html lang="{% if page.language == nil %}en{% else %}{{ page.language }}{% endif %}">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="google-site-verification" content="aexITLS38FdIRzwj25OVWxm87rpa9l-UV0URTyC9cTs" />
   <title>
-    {{ page.title }}
-    {% if page.category == 'blog' and page.url != '/blog/index.html' %}
+    Categories - Blog
+    
     - Jiang Yantao
-    {% endif %}
+    
   </title>
   <link rel="stylesheet" href="../css/site.css">
   <link href="/favicon.ico" rel="shortcut icon" type="image/x-icon" />
-  {% if page.description %}<meta name="description" content="{{page.description}}" />{% endif %}
+  
   <link rel="alternate" type="application/atom+xml" title="RSS Feed for Jiang Yantao's blog" href="/feed.xml" />
 
-  {% if page.url == '/en/index.html' %}
-    <link rel="alternate" hreflang="ch" href="/" />
-  {% elsif page.url == '/index.html' %}
-    <link rel="alternate" hreflang="en" href="/en/" />
-  {% endif %}
+  
 
-  {{ page.extra_head }}
+  
 
-  {% if page.category == 'blog' %}
-    {% if page.photo %}
-      <meta property="og:image" content="/images/posts/{{ page.photo }}" />
-    {% endif %}
-  {% endif %}
+  
+    
+  
 </head>
 <body>
   <div class="top-bar">
   </div>
+
   <div class="header-container">
     <header class="inner">
-      {% if page.url == '/en/index.html' %}
+      
       <nav>
-        <a class="{% if page.category == 'about' %} selected {% endif %}" href="/en/">About</a>
-        <a class="{% if page.category == 'project' %} selected {% endif %}" href="/project/">Project</a>
-        <!--<a class="{% if page.category == 'resume' %} selected {% endif %}" href="/resume/">Resume</a>-->
-        <a href="/resume/">Resume</a>
-        <!--a class="{% if page.category == 'publication' %} selected {% endif %}" href="/publication/">出版</a-->
-        <a class="{% if page.category == 'blog' %} selected {% endif %}" href="/blog/">Blog</a>
-        <!--<a class="{% if page.category == 'contact' %} selected {% endif %} contact" href="/contact/">Contact</a>-->
-		<a href="#">Employ</a>
-        <a href="https://github.com/hi-github">Github</a>
-      </nav>
-      {% else %}
-      <nav>
-        <a class="{% if page.category == 'about' %} selected {% endif %}" href="/">关于</a>
-        <a class="{% if page.category == 'project' %} selected {% endif %}" href="/project/">项目</a>
-        <!--<a class="{% if page.category == 'resume' %} selected {% endif %}" href="/resume/">Resume</a>-->
+        <a class="" href="/">关于</a>
+        <a class="" href="/project/">项目</a>
+        <!--<a class="" href="/resume/">Resume</a>-->
 		    <a href="/resume/">简历</a>
-        <!--a class="{% if page.category == 'publication' %} selected {% endif %}" href="/publication/">Publication</a-->
-        <a class="{% if page.category == 'blog' %} selected {% endif %}" href="/blog/">博客</a>
+        <!--<a class="" href="/publication/">Publication</a>-->
+        <a class=" selected " href="/blog/">博客</a>
 		<a href="/books/">书籍</a>
-        <!--<a class="{% if page.category == 'contact' %} selected {% endif %} contact" href="/contact/">Contact</a>-->
+        <!--<a class=" contact" href="/contact/">Contact</a>-->
         <a href="https://github.com/hi-github">Github</a>
       </nav>
-      {% endif %}
+      
       
       <div class="pull-right right logo">
         <div class="name">
           <a href="/">Jiang Yantao</a><br />
           <small>
             <em>
-              {% if page.url == '/index.html' %}
-                <a href="/cn">开发者</a>
-              {% else %}
-                <a href="/">developer</a>
-              {% endif %}
+              
+                <a href="/">开发者</a>
+              
             </em>
           </small>
         </div>
@@ -80,7 +61,44 @@
     <div class="clear"></div>
   </div>
 
-  {{ content }}
+  <div class="row">
+<div>
+<a class="button btn-primary" href="/blog/index.html">By year</a>
+<a class="button btn-primary" href="/blog/categories.html">By categories</a>
+</div>
+</div>
+<section class="inner">
+<div id='tag_cloud'>
+
+<a href="#jekyll" title="jekyll" rel="1">jekyll (1)</a>
+
+</div>
+
+<ul class="listing">
+
+  <li class="listing-seperator" id="jekyll">jekyll</li>
+
+  <li class="listing-item">
+  <time datetime="2015-03-16">2015-03-16</time>
+  <a href="/blog/Used-jekyll_wirite-blog.html" title="Jekyll基本使用">Jekyll基本使用</a>
+  </li>
+
+
+</ul>
+</section>
+
+<script src="../js/jquery.tagcloud.js" type="text/javascript" charset="utf-8"></script> 
+<script language="javascript">
+$.fn.tagcloud.defaults = {
+    size: {start: 1, end: 1, unit: 'em'},
+      color: {start: '#f8e0e6', end: '#ff3333'}
+};
+
+$(function () {
+    $('#tag_cloud a').tagcloud();
+});
+</script>
+
   <div class="separator"></div>
 
   <div  style="border-bottom: 1px solid #ddd"></div>
@@ -166,6 +184,23 @@
       window.top.location.replace(window.self.location.href);
     }
   </script-->
+
+  <!--
+  <script id="_webengage_script_tag" type="text/javascript">
+    // var _weq = _weq || {};
+    // _weq['webengage.licenseCode'] = '11b563c38';
+    // _weq['webengage.widgetVersion'] = "4.0";
+
+    // (function(d){
+    //   var _we = d.createElement('script');
+    //   _we.type = 'text/javascript';
+    //   _we.async = true;
+    //   _we.src = (d.location.protocol == 'https:' ? "https://ssl.widgets.webengage.com" : "http://cdn.widgets.webengage.com") + "/js/widget/webengage-min-v-4.0.js";
+    //   var _sNode = d.getElementById('_webengage_script_tag');
+    //   _sNode.parentNode.insertBefore(_we, _sNode);
+    // })(document);
+  </script>
+  -->
 
 </body>
 </html>

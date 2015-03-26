@@ -1,15 +1,16 @@
 ---
 layout: project
 title: Jiang Yantao - Projects
+language: cn
 description: Jiang Yantao's projects. Some of them are my academy research, some are just my interest.
 category: project
 ---
 
 <p class="fancy">
-  Here are my projects. Some of them are my academy research, some are just my interest.
-  <abbr title="User Experience">UX</abbr>?
+  这里是我做过的一些项目。有些是在公司里边开发完成的项目，有些是自己感兴趣的方面做得一写小应用，有些是觉得写的好的开源项目分析学习的。
+  <abbr title="User Experience">UX</abbr>？
 
-  <a href="/contact/">Ping me</a> and let's build awesome and useful stuff!
+  <a href="/contact/">联系我</a> 让我们一起构建出更美好更有用的APP！
 </p>
 
 {% for product in site.data.products %}
@@ -20,10 +21,10 @@ category: project
     </a>
     <h2><a href="{{ product.url }}">{{ product.name }}</a></h2>
     <h3>{{ product.oneliner }}</h3>
-    <p><strong>My role:</strong> {{ product.role }}</p>
+    <p><strong>我的职责:</strong> {{ product.role }}</p>
     <p>{{ product.description}}</p>
     <p>
-      <strong>Technologies:</strong> {{ product.technologies | join: ", " }}
+      <strong>技术点:</strong> {{ product.technologies | join: ", " }}
     </p>
   </section>
   <div class="spacer"></div>
