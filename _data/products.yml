@@ -14,38 +14,34 @@
 #    - Python
 #    - Image Retrieval
 
-#- name: HABIR
-#  image: HABIRH_with_shadow.png
-#  url: http://yongyuan.name/habir
-#  oneliner: Hashing Baseline for Image Retrieval
-#  role: Project Owner
-#  description: >
-#    I do the image retrieval research in early 2013. My mission is to design
-#    efficient hashing algorithm to map the semantic similar images to the similar codes.
-#    There are two main advantages using hashing method for image retrieval, i.e. storage and
-#    computation efficience. To let more researchers focus on design hashing algorithm, I have 
-#    built a hashing baseline, hoping this project can do some help for some researchers.
-#  technologies:
-#    - Matlab
-#    - Hashing
-#    - Image Retrieval
+- name: e拇指
+  image: E_MUZHI_APK_PAGE_EG.png
+  url: http://m.emz.com.cn/down?from=1
+  oneliner: 海南最好最全电子优惠券和团购软件，岛民和游客必备
+  role: 协助pm完成应用框架的搭建，完成联网协议的处理和联网工具类的编写，抽象类和接口的抽取，对初始化数据的获取和存储，以及首页模块和活动模块的实现，项目中疑难bug的解决
+  description: >
+    1.主界面FrameActivity继承activityGroup，主要完成应用数据的初始化，获取定位和用户信息并通过网络接口异步上传到服务器，初始化界面，完成主界面的切换，检查并维护应用的生命周期，完成各个阶段的数据初始化/销毁等操作和方法调用。
+    <br/>2.界面模块：内部使用到Stack数组存放(封装intent，class，view等信息)自定义类模拟任务栈，存放界面的帧布局数组，界面内部视图的view数组和界面对应的class字节码文件数组。
+    <br/>3.页面切换是通过获取到点击的tab的索引值(需要注意是在底部导航初始化时需要给每个视图设置tag)，取出class等数组中的值通过getLocalActivityManager调用startActivity用intent绑定对应的activity获取返回window对象，调用getDecorView()方法获取到顶层视图，赋值给stack栈中的自定义对象的view属性中，通过切换不同的类中的View的显示与隐藏，实现tab的视图切换
+    <br/>4.四个界面的父类BaseActivity完成公共的操作的抽取如标题栏的初始化，提示消息，dialog的显示与隐藏等，以及对按键的处理等操作
+    <br/>5.主界面整个就是使用pullToRefresh开源框架，实现下拉刷新和加载更多功能，第一个条目是一个自定义的线性布局通过addHeaderView将布局添加进去，完成gridview的事件处理，定位，和条目图片的异步加载
+    活动界面是通过一个自定义的3D画廊，完成图片的展示，该功能的实现是通过自定义类继承gallery，重写getChildStaticTransformation和onSizeChanged两个方法，完成图片的放大，旋转的效果实现，通过LruCache进行图片的缓存管理，通过在适配器中调用getView方法展示图片是首先展示默认图片，通过封装工具类异步加载网络图片进行替换，增强用户体验
+  technologies:
+    - pullToRefresh
+    - LruCache
+    - xUtil
 
-#- name: PCVwithPython
-#  image: PCVH_with_shadow.png
-#  url: http://yongyuan.name/pcvwithpython
-#  oneliner: Programming Computer Vision with Python(Translate to Chinese)
-#  role: Main trainslator
-#  description: >
-#    I'm a big fun of Python. I think Python is one of the most elegant programming language
-#    I have known. It's a great power tool which can be used everywhere, such as write scripts,
-#    using Django for web developmentand do science computation. When I first meet the book <Programming 
-#    Computer Vision with Python>, I was attracted by the book. The content in this book is 
-#    quite rich and diverse and I can't bear to share the book to more people. So in my free time, I dived into
-#    the book and translate it into Chinese. Morover, I organized and supply the codes.
-#  technologies:
-#    - Python
-#    - Jekyll
-#    - Markdown
+- name: 321浏览器
+  image: 321_BROSWER_APK_PAGE_EG.png
+  url: http://android.d.cn/software/39873.html
+  oneliner: 《321浏览器》传递正能量。1、内置万能播放器。2、断点续传：支持上次下不完，接着下。
+  role: 使用自定义控件、完成导航页面的按钮封装数据、输入栏内容的更新、封装安卓内置的浏览器内核，使用万能解码器播放本地不支持的视频
+  description: >
+    解析资产目录下的json数据，并将数据更新到应用的files目录，在有网络的情况下更新网址导航数据，解析数据完成导航页面的数据展示、完成顶部输入栏不同状态的更新，实现多线程下载、断点下载、并需要开启事务将下载信息实时更新到sqlite数据库，当任务完成后，根据链接地址，修改任务状态、进一步封装webview，设置WebViewClient帮助WebView处理各种通知、请求事件并，重写shouldOverrideUrlLoading方法，判断地址是否为音频地址，激活处理播放视频的Activity播放网页中的视频、设置setDownloadListener监听去启用后台服务开启线程去执行下载任务，使用友盟SDK进行数据分析、应用的维护和更新、使用Google Analytics对目标网站进行访问数据统计和分析
+  technologies:
+    - 自定义控件
+    - ffmpeg
+    - 多线程断点续传下载
 
 
 
