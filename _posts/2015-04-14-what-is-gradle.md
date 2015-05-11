@@ -225,7 +225,7 @@ categories: [Gradle]
 
 ##感兴趣的也可以参考官方的文档进行学习
 
-### <a href="/file_pdf/gradle_beyond_the_basics.pdf">**gradle学习文档**<a/>
+### <a href="/file_pdf/gradle_beyond_the_basics.pdf">**gradle学习文档**</a>
 
 
     
