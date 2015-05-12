@@ -174,11 +174,39 @@ Request 中的Transport头字段指定了客户端可接受的数据传输参数
 	  S->C: PLAY response          //S回应请求信息
 	  S->C: 发送流媒体数据
 	
+Range头可能包含一个时间参数。该参数以UTC格式指定了播放开始的时间。如果在这个指定时间后收到消息，那么播放立即开始。时间参数可能用来帮助同步从不同数据源获取的数据流。
+
+不含Range头的PLAY请求也是合法的。它从媒体流开头开始播放，直到媒体流被暂停。如果媒体流通过PAUSE暂停，媒体流传输将在暂停点（the pause point）重新开始。
+
+如果媒体流正在播放，那么这样一个PLAY请求将不起更多的作用，只是客户端可以用此来测试服务器是否存活。
+
+**PAUSE**
+
+PAUSE请求引起媒体流传输的暂时中断。如果请求URL中指定了具体的媒体流，那么只有该媒体流的播放和记录被暂停（halt）。比如，指定暂停音频，播放将会无声。如果请求URL指定了一组流，那么在该组中的所有流的传输将被暂停。如：
+
+		C->S:   PAUSE rtsp://example.com/fizzle/foo RTSP/1.0
+				CSeq: 834
+				Session: 12345678
+		 
+		S->C:   RTSP/1.0 200 OK
+				CSeq: 834
+				Date: 23 Jan 1997 15:35:06 GMT
+
+PAUSE请求中可能包含一个Range头用来指定何时媒体流暂停，我们称这个时刻为暂停点（pause point）。该头必须包含一个精确的值，而不是一个时间范围。媒体流的正常播放时间设置成暂停点。当服务器遇到在任何当前挂起（pending）的PLAY请求中指定的时间点后，暂停请求生效。如果Range头指定了一个时间超出了任何一个当前挂起的PLAY请求，将返回错误"457 Invalid Range" 。如果一个媒体单元（比如一个音频或视频禎）正好在一个暂停点开始，那么表示将不会被播放或记录。如果Range头缺失，那么在收到暂停消息后媒体流传输立即中断，并且暂停点设置成当前正常播放时间。
 
 **TEARDOWN**
 
 	⑤ C->S: TEARDOWN request     //C请求关闭会话
+		eg:
+			EARDOWN rtsp://example.com/fizzle/foo RTSP/1.0
+			CSeq: 892
+			Session: 12345678
+
 	  S->C: TEARDOWN response     //S回应请求
+		eg:
+			RTSP/1.0 200 OK
+			CSeq: 892
+		
 
 
 **上述的过程是标准的RTSP流程，其中第3步和第4步是必需的。**
@@ -209,3 +237,35 @@ Request 中的Transport头字段指定了客户端可接受的数据传输参数
 * **RTSP会话(RTSP session )：**
 
 > RTSP交互的全过程。对一个电影的观看过程,会话(session)包括由客户端建立媒体流传输机制(SETUP)，使用播放(PLAY)或录制(RECORD)开始传送流，用停止(TEARDOWN)关闭流。
+
+
+### RTSP重要头字段参数
+
+1. **Accept**:
+
+用于指定客户端可以接受的媒体描述信息类型。比如:
+
+	Accept: application/rtsl, application/sdp;level=2
+
+2. **Bandwidth**:
+
+用于描述客户端可用的带宽值。
+
+3. **CSeq**：
+
+指定了RTSP请求回应对的序列号，在每个请求或回应中都必须包括这个头字段。对每个包含一个给定序列号的请求消息，都会有一个相同序列号的回应消息。
+
+4. **Rang**:
+
+用于指定一个时间范围，可以使用SMPTE、NTP或clock时间单元。
+
+5. **Session**:
+
+ Session头字段标识了一个RTSP会话。Session ID 是由服务器在SETUP的回应中选择的，客户端一当得到Session ID后，在以后的对Session 的操作请求消息中都要包含Session ID.
+
+6. **Transport**:
+
+ Transport头字段包含客户端可以接受的转输选项列表，包括传输协议，地址端口，TTL等。服务器端也通过这个头字段返回实际选择的具体选项。如:
+
+	Transport: RTP/AVP;multicast;ttl=127;mode="PLAY",
+	RTP/AVP;unicast;client_port=3456-3457;mode="PLAY"
